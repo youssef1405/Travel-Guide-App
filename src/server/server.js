@@ -12,11 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //serve static files
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('/', (req, res) => {
   // res.send('Travel App');
-  res.sendFile(path.resolve('src/client/views/index.html'));
+  res.sendFile(path.resolve('dist/index.html'));
 });
 
 //api.geonames.org/searchJSON?q=toronto&maxRows=5&username=
@@ -26,10 +26,13 @@ app.get('/', (req, res) => {
 app.post('/geonames', (req, res) => {
   const baseUrl = 'http://api.geonames.org/searchJSON?q=';
   const url = `${baseUrl}${req.body.location}&maxRows=5&username=${process.env.GEONAMES_API_USERNAME}`;
-  console.log(url);
   fetch(url)
     .then((response) => response.json())
-    .then((data) => console.log(data['geonames'][0]));
+    .then((data) => {
+      const { lat, lng } = data['geonames'][0];
+      console.log(lat, lng);
+      res.send({ lat, lng });
+    });
 });
 
 app.listen(3000, () => {

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon src/server/server.js",
-    "build": "webpack"
+    "build-dev": "webpack-dev-server --config webpack.dev.js --open",
+    "build-prod": "webpack --config webpack.prod.js"
   },
   "author": "Youssef Girgeis",
   "license": "ISC",
@@ -18,8 +19,13 @@
     "webpack-cli": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
-    "nodemon": "^2.0.20"
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.20",
+    "webpack-dev-server": "^4.11.1"
   }
 }

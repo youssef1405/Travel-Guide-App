@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 //api.geonames.org/searchJSON?q=toronto&maxRows=5&username=
-// https://api.weatherbit.io/v2.0/current?key=&lat=43.70011&lon=-79.4163
+// https://api.weatherbit.io/v2.0/current?key=369dba7cc0a84aa5aff919c795041df1&lat=43.70011&lon=-79.4163
 //https://pixabay.com/api/?key=&q=toronto
 
 app.post('/geonames', (req, res) => {
@@ -33,6 +33,16 @@ app.post('/geonames', (req, res) => {
       console.log(lat, lng);
       res.send({ lat, lng });
     });
+});
+
+app.post('/weather', async (req, res) => {
+  const basUrl = 'https://api.weatherbit.io/v2.0/current?key';
+  const url = `${basUrl}=${process.env.WEATHER_API_KEY}&lat=${req.body.lat}&lon=${req.body.lng}`;
+  const response = await fetch(url);
+  const weatherData = await response.json();
+  const { temp, weather } = weatherData.data[0];
+  // console.log(weatherData.data[0].temp);
+  res.send({ temp });
 });
 
 app.listen(3000, () => {

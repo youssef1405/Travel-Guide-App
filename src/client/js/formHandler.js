@@ -7,8 +7,19 @@ const handleSubmit = async (e) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ location: locationValue }),
   });
-  const data = await res.json();
-  console.log(data);
+  const coordinates = await res.json();
+  getWeather(coordinates);
+};
+
+const getWeather = async ({ lng, lat }) => {
+  const res = await fetch('http://localhost:3000/weather', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ lat, lng }),
+  });
+  const weatherData = await res.json();
+  const { temp } = weatherData;
+  console.log(temp);
 };
 
 document.getElementById('form').addEventListener('submit', handleSubmit);

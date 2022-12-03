@@ -9,6 +9,7 @@ const handleSubmit = async (e) => {
   });
   const coordinates = await res.json();
   getWeather(coordinates);
+  getImage(locationValue);
 };
 
 const getWeather = async ({ lng, lat }) => {
@@ -20,6 +21,17 @@ const getWeather = async ({ lng, lat }) => {
   const weatherData = await res.json();
   const { temp } = weatherData;
   console.log(temp);
+};
+
+const getImage = async (location) => {
+  const res = await fetch('http://localhost:3000/image', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ location }),
+  });
+
+  const imageUrl = await res.json();
+  console.log(imageUrl);
 };
 
 document.getElementById('form').addEventListener('submit', handleSubmit);

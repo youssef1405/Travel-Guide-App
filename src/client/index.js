@@ -1,1 +1,1 @@
-import { handleSubmit } from './js/formHandler';
+import { handleSubmit } from './js/app';

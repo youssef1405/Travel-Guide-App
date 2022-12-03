@@ -15,13 +15,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('/', (req, res) => {
-  // res.send('Travel App');
   res.sendFile(path.resolve('dist/index.html'));
 });
-
-//api.geonames.org/searchJSON?q=toronto&maxRows=5&username=
-// https://api.weatherbit.io/v2.0/current?key=369dba7cc0a84aa5aff919c795041df1&lat=43.70011&lon=-79.4163
-//https://pixabay.com/api/?key=&q=toronto
 
 app.post('/geonames', (req, res) => {
   const baseUrl = 'http://api.geonames.org/searchJSON?q=';
@@ -41,8 +36,21 @@ app.post('/weather', async (req, res) => {
   const response = await fetch(url);
   const weatherData = await response.json();
   const { temp, weather } = weatherData.data[0];
-  // console.log(weatherData.data[0].temp);
   res.send({ temp });
+});
+
+app.post('/image', async (req, res) => {
+  const baseUrl = 'https://pixabay.com/api/?key=';
+  const url = `${baseUrl}${process.env.PIXABAY_API_KEY}&q=${req.body.location}`;
+  const response = await fetch(url);
+  const pixaData = await response.json();
+
+  res.send({
+    imageUrl:
+      pixaData.hits[Math.floor(Math.random() * pixaData.hits.length) + 1][
+        'webformatURL'
+      ],
+  });
 });
 
 app.listen(3000, () => {

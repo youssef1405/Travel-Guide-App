@@ -4,25 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Solway:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Travel App</title>
   </head>
   <body>
-    <header id="header"></header>
+    <header id="header">
+      <h1>Plan your Trip</h1>
+
+      <div class="form-container">
+        <div class="form-title">Search for your trip</div>
+        <form action="" id="form">
+          <label class="label" for="location">Destination</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            placeholder="Where are you going to?"
+          />
+
+          <label class="label" for="departure">Departure</label>
+          <input type="date" name="departure" id="departure" class="date" />
+
+          <label for="arrival">Arrival</label>
+          <input type="date" name="arrival" id="arrival" class="date" />
+
+          <input type="submit" value="Search" class="btn" />
+        </form>
+      </div>
+    </header>
     <main id="main">
-      <form action="" id="form">
-        <label class="label" for="location">Destination</label>
-        <input
-          type="text"
-          name="location"
-          id="location"
-          placeholder="Where are you going to?"
-        />
-
-        <label class="label" for="date">Check-in</label>
-        <input type="date" name="date" id="date" />
-
-        <input type="submit" value="Search" />
-      </form>
+      <section class="trips"></section>
 
       <section class="modal hidden">
         <p class="location"></p>

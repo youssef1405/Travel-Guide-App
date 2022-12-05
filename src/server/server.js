@@ -31,11 +31,18 @@ app.post('/geonames', (req, res) => {
 });
 
 app.post('/weather', async (req, res) => {
-  const basUrl = 'https://api.weatherbit.io/v2.0/current?key';
-  const url = `${basUrl}=${process.env.WEATHER_API_KEY}&lat=${req.body.lat}&lon=${req.body.lng}`;
+  const { lat, lng, days } = req.body;
+  const currentBaseUrl = 'https://api.weatherbit.io/v2.0/current?key';
+  const forcastBaseUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?key';
+
+  const url = `${days <= 7 ? currentBaseUrl : forcastBaseUrl}=${
+    process.env.WEATHER_API_KEY
+  }&lat=${lat}&lon=${lng}`;
+  console.log(url);
   const response = await fetch(url);
   const weatherData = await response.json();
-  const { temp, weather } = weatherData.data[0];
+  const { temp, weather } =
+    days <= 7 ? weatherData.data[0] : weatherData.data[15];
   res.send({ temp });
 });
 
@@ -48,7 +55,7 @@ app.post('/image', async (req, res) => {
   res.send({
     imageUrl:
       pixaData.hits[Math.floor(Math.random() * pixaData.hits.length) + 1][
-        'webformatURL'
+        'previewURL'
       ],
   });
 });

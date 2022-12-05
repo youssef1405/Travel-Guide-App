@@ -24,9 +24,9 @@ app.post('/geonames', (req, res) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const { lat, lng } = data['geonames'][0];
+      const { lat, lng, countryName } = data['geonames'][0];
       console.log(lat, lng);
-      res.send({ lat, lng });
+      res.send({ lat, lng, countryName });
     });
 });
 
@@ -38,12 +38,14 @@ app.post('/weather', async (req, res) => {
   const url = `${days <= 7 ? currentBaseUrl : forcastBaseUrl}=${
     process.env.WEATHER_API_KEY
   }&lat=${lat}&lon=${lng}`;
-  console.log(url);
+
   const response = await fetch(url);
   const weatherData = await response.json();
-  const { temp, weather } =
+  const { temp, weather, wind_spd, app_temp } =
     days <= 7 ? weatherData.data[0] : weatherData.data[15];
-  res.send({ temp });
+  const clouds = weather.description;
+
+  res.send({ temp, clouds, wind_spd, app_temp });
 });
 
 app.post('/image', async (req, res) => {

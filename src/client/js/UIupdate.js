@@ -28,13 +28,13 @@ const updateModal = (
   feelsLike
 ) => {
   imgHTML.src = `${imageUrl.imageUrl}`;
-  tripTitleHTML.textContent = `Trip to ${city}, ${country}`;
-  departureHTML.textContent = `Departure: ${departureDate}`;
-  arrivalHTNL.textContent = `Arrival: ${arrivalDate}`;
-  durationHTML.textContent = `${duration} days`;
-  daysHTML.textContent = `Your trip to ${city} is ${daysAway} days away`;
-  tempHTML.textContent = `Temperature: ${temp}`;
-  feelsLikeHTML.textContent = `Feels Like: ${feelsLike}`;
+  tripTitleHTML.innerHTML = `Trip to: ${city}, ${country}`;
+  departureHTML.innerHTML = `<span class="title">Departure: </span> ${departureDate}`;
+  arrivalHTNL.innerHTML = `<span class="title">Arrival: </span> ${arrivalDate}`;
+  durationHTML.innerHTML = `<span class="title">Duration: </span>${duration} days`;
+  daysHTML.textContent = `Your trip to ${city} is ${daysAway} day(s) away`;
+  tempHTML.textContent = `Temperature: ${Math.round(temp)}C`;
+  feelsLikeHTML.textContent = `Feels Like: ${Math.round(feelsLike)}C`;
   windSpeedHTML.textContent = `Wind Speed: ${windSpeed}`;
   cloudsHTML.textContent = `${clouds} throughout the day`;
   modal.classList.remove('hidden');

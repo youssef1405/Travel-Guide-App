@@ -1,19 +1,88 @@
+$border-style: 1px solid #ddd;
+
 .modal {
-  width: 500px;
-  border: 1px solid #ddd;
+  width: 30%;
+  border: $border-style;
   min-height: 250px;
-  margin-top: 2rem;
   z-index: 2;
   background-color: #fff;
-  position: relative;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 0.8rem;
+  border-radius: 10px;
+  color: #3d3d3d;
 
   .modal-header {
   }
 
   .modal-body {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+
+    .modal-img {
+      width: 30%;
+      border-radius: 5px;
+    }
+
+    .modal-trip-info {
+      .trip-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      h2,
+      p {
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .modal-weather-container {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 0.5rem;
+        div {
+          font-size: 0.9rem;
+        }
+      }
+
+      .clouds {
+        font-size: 0.9rem;
+      }
+    }
   }
+
+  .modal-buttons-container {
+    border-top: $border-style;
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    padding-top: 0.5rem;
+
+    .btn {
+      border: none;
+      padding: 8px 12px;
+      font-weight: 500;
+      border-radius: 5px;
+      color: #fff;
+    }
+
+    .modal-save-btn {
+      background-color: #2950b8;
+    }
+    .modal-cancel-btn {
+      background-color: #e94444;
+    }
+  }
+}
+
+span.title {
+  font-weight: 600;
 }
 
 .overlay {

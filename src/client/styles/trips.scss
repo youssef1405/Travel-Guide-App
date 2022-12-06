@@ -1,0 +1,11 @@
+$border-style: 1px solid #ddd;
+
+.trip {
+  width: 90%;
+  border: $border-style;
+  min-height: 250px;
+  background-color: #fff;
+  padding: 0.8rem;
+  border-radius: 10px;
+  color: #3d3d3d;
+}

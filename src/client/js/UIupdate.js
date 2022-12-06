@@ -14,6 +14,8 @@ const feelsLikeHTML = document.querySelector('.feels-like');
 const windSpeedHTML = document.querySelector('.wind-speed');
 const cloudsHTML = document.querySelector('.clouds');
 
+const tripsList = document.querySelector('.trips-list');
+
 const updateModal = (
   country,
   city,
@@ -46,6 +48,21 @@ const closeModal = () => {
   overlay.classList.add('hidden');
 };
 
-document.body.addEventListener('click', closeModal);
+const addTrip = () => {
+  closeModal();
+  modal.classList.remove('hidden', 'modal-main');
+  tripsList.appendChild(modal);
+  document.querySelector('.modal-save-btn').remove();
+  document.querySelector('.modal-cancel-btn').remove();
+  modal.classList.add('trip');
+};
+
+overlay.addEventListener('click', closeModal);
+
+document
+  .querySelector('.modal-cancel-btn')
+  .addEventListener('click', closeModal);
+
+document.querySelector('.modal-save-btn').addEventListener('click', addTrip);
 
 export { updateModal, closeModal };

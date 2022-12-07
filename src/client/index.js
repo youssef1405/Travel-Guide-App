@@ -5,3 +5,6 @@ import './styles/header.scss';
 import './styles/trips.scss';
 
 import { handleSubmit } from './js/app';
+import { closeModal, addTrip } from './js/UIupdate';
+
+export { closeModal, addTrip };

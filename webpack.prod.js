@@ -6,6 +6,8 @@ module.exports = {
   mode: 'production',
   output: {
     path: path.join(__dirname, 'dist'),
+    libraryTarget: 'var',
+    library: 'Client',
   },
 
   module: {

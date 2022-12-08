@@ -1,4 +1,5 @@
 import { updateModal, closeModal } from './UIupdate';
+import { getDays } from './dates';
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -19,7 +20,7 @@ const handleSubmit = async (e) => {
     getDays(departureValue)
   );
 
-  const duration = 5;
+  const duration = getDays(arrivalValue) - getDays(departureValue);
   const imageUrl = await getImage(locationValue);
   updateModal(
     countryName,
@@ -57,32 +58,6 @@ const getImage = async (location) => {
   const imageUrl = await res.json();
 
   return imageUrl;
-};
-
-/**
- *
- * @param {*} departureDate Departure Date of the trip
- * @returns Number of of days between today and the departure date
- */
-const getDays = (departureDate) => {
-  const MILSECONDS_TO_DAYS = 86400000; // to convert millseconds to days
-
-  const todayDate = new Date();
-  const deptDate = new Date(departureDate);
-
-  return (
-    (new Date(
-      deptDate.getFullYear(),
-      deptDate.getMonth(),
-      deptDate.getDate() + 1
-    ) -
-      new Date(
-        todayDate.getFullYear(),
-        todayDate.getMonth(),
-        todayDate.getDate()
-      ).getTime()) /
-    MILSECONDS_TO_DAYS
-  );
 };
 
 document.getElementById('form').addEventListener('submit', handleSubmit);

@@ -30,4 +30,14 @@ const getImage = async (location) => {
   return imageUrl;
 };
 
-export { getCoordinates, getWeather, getImage };
+const getCountryFlag = async (country) => {
+  const res = await fetch('http://localhost:3000/flag', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ country }),
+  });
+
+  return await res.json();
+};
+
+export { getCoordinates, getWeather, getImage, getCountryFlag };

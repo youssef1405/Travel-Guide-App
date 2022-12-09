@@ -17,6 +17,19 @@ $border-style: 1px solid #ddd;
 
 .modal {
   .modal-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin-bottom: 0.5rem;
+    padding: 5px;
+    .country-flag {
+      width: 10%;
+    }
+    span {
+      font-weight: 600;
+      text-transform: uppercase;
+    }
   }
 
   .modal-body {

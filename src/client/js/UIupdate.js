@@ -4,8 +4,23 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const main = document.getElementById('main');
 
+/**
+ * This function populates the modal with data extracted from the APIs
+ * @param {*} country
+ * @param {*} city
+ * @param {*} imageUrl
+ * @param {*} departureDate
+ * @param {*} arrivalDate
+ * @param {*} daysAway
+ * @param {*} duration
+ * @param {*} temp
+ * @param {*} clouds
+ * @param {*} windSpeed
+ * @param {*} feelsLike
+ */
 const updateModal = (
   country,
+  flag,
   city,
   imageUrl,
   departureDate,
@@ -22,7 +37,10 @@ const updateModal = (
   let modalSection = document.createElement('section');
   modalSection.classList.add('modal', 'modal-main');
   modalSection.innerHTML = `
-  <header class="modal-header">Modal Header</header>
+  <header class="modal-header">
+    <img class="country-flag" alt="Destination Flag" src=${flag} />
+    <span class="country-name">${country}</span>
+  </header>
   <div class="modal-body">
     <img class="modal-img" src="${imageUrl.imageUrl}" alt="" />
     <div class="modal-trip-info">
@@ -50,6 +68,10 @@ const updateModal = (
   main.appendChild(modalSection);
 };
 
+/**
+ * This function unhides the trip section which is a child of the
+ * main element(container for all trips)
+ */
 const addTrip = () => {
   const modals = document.querySelectorAll('.modal');
   for (const modal of modals) {
@@ -57,13 +79,17 @@ const addTrip = () => {
       modal.classList.remove('modal-main');
       modal.classList.add('trip');
 
+      // remove button from the modal after being added to trips list.
       modal.querySelector('.modal-buttons-container').remove();
-      //   modal.querySelector('.modal-save-btn').remove();
     }
   }
   overlay.classList.add('hidden');
 };
 
+/**
+ * This function closes the trip modal once the "Cancel" button is clicked
+ * or clicking outside the modal
+ */
 function closeModal() {
   document.querySelector('.modal-main').remove();
   overlay.classList.add('hidden');

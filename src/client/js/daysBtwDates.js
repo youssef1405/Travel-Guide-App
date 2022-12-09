@@ -8,9 +8,6 @@ const getDays = (departureDate) => {
 
   const todayDate = new Date();
   departureDate = new Date(departureDate);
-  //   firstDate = new Date(firstDate);
-  //   secondDate =
-  //     typeof secondDate === 'string' ? new Date(secondDate) : secondDate;
   return (
     (new Date(
       departureDate.getFullYear(),

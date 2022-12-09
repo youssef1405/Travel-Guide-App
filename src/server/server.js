@@ -62,6 +62,15 @@ app.post('/image', async (req, res) => {
   });
 });
 
+app.post('/flag', async (req, res) => {
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${req.body.country}`
+  );
+  const CountryData = await response.json();
+  const countryFlag = CountryData[0]['flags']['png'];
+  res.send({ countryFlag });
+});
+
 app.listen(3000, () => {
   console.log('App running on port 3000');
 });

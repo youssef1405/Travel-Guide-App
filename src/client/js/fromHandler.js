@@ -1,6 +1,11 @@
 import { updateModal, closeModal } from './UIupdate';
 import { getDays } from './daysBtwDates';
-import { getCoordinates, getWeather, getImage } from './APIData';
+import {
+  getCoordinates,
+  getWeather,
+  getImage,
+  getCountryFlag,
+} from './APIData';
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -10,6 +15,7 @@ const handleSubmit = async (e) => {
   const arrivalValue = document.getElementById('arrival').value;
 
   const { lat, lng, countryName } = await getCoordinates(locationValue);
+  const { countryFlag } = await getCountryFlag(countryName);
   const { temp, clouds, wind_spd, app_temp } = await getWeather(
     lng,
     lat,
@@ -21,6 +27,7 @@ const handleSubmit = async (e) => {
 
   updateModal(
     countryName,
+    countryFlag,
     locationValue,
     imageUrl,
     departureValue,

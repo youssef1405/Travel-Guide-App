@@ -26,7 +26,7 @@ const updateModal = (
   <div class="modal-body">
     <img class="modal-img" src="${imageUrl.imageUrl}" alt="" />
     <div class="modal-trip-info">
-      <h2 class="trip-title">Trip to: ${city}, ${country}</h2>
+      <h2 class="trip-title modal-title">Trip to: ${city}, ${country}</h2>
       <p class="modal-departure"><span class="title">Departure: </span> ${departureDate}</p>
       <p class="modal-arrival"><span class="title">Arrival: </span> ${arrivalDate}</p>
 
@@ -36,7 +36,7 @@ const updateModal = (
       <div class="modal-weather-container">
         <div class="temp">Temperature: ${Math.round(temp)}C</div>
         <div class="feels-like">Feels Like: ${Math.round(feelsLike)}C</div>
-        <div class="wind-speed">Wind Speed: ${windSpeed}</div>
+        <div class="wind-speed">Wind Speed: ${Math.round(windSpeed)}</div>
       </div>
       <div class="clouds">${clouds} throughout the day</div>
     </div>
@@ -56,8 +56,9 @@ const addTrip = () => {
     if (modal.classList.contains('modal-main')) {
       modal.classList.remove('modal-main');
       modal.classList.add('trip');
-      modal.querySelector('.modal-cancel-btn').remove();
-      modal.querySelector('.modal-save-btn').remove();
+
+      modal.querySelector('.modal-buttons-container').remove();
+      //   modal.querySelector('.modal-save-btn').remove();
     }
   }
   overlay.classList.add('hidden');

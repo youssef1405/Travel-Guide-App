@@ -25,7 +25,6 @@ app.post('/geonames', (req, res) => {
     .then((response) => response.json())
     .then((data) => {
       const { lat, lng, countryName } = data['geonames'][0];
-      console.log(lat, lng);
       res.send({ lat, lng, countryName });
     });
 });

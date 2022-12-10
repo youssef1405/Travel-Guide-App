@@ -18,43 +18,45 @@ const main = document.getElementById('main');
  * @param {*} windSpeed
  * @param {*} feelsLike
  */
-const updateModal = (
-  country,
-  flag,
-  city,
-  imageUrl,
-  departureDate,
-  arrivalDate,
-  daysAway,
-  duration,
-  temp,
-  clouds,
-  windSpeed,
-  feelsLike
-) => {
-  overlay.classList.remove('hidden');
+const updateModal = (appData) => {
+  const {
+    locationValue,
+    departureValue,
+    arrivalValue,
+    countryName,
+    countryFlag,
+    imageUrl,
+    daysAway,
+    duration,
+    temp,
+    clouds,
+    wind_spd,
+    app_temp,
+  } = appData;
 
+  overlay.classList.remove('hidden');
   let modalSection = document.createElement('section');
   modalSection.classList.add('modal', 'modal-main');
+
   modalSection.innerHTML = `
   <header class="modal-header">
-    <img class="country-flag" alt="Destination Flag" src=${flag} />
-    <span class="country-name">${country}</span>
+    <img class="country-flag" alt="Destination Flag" src=${countryFlag} />
+    <span class="country-name">${countryName}</span>
   </header>
   <div class="modal-body">
     <img class="modal-img" src="${imageUrl.imageUrl}" alt="" />
     <div class="modal-trip-info">
-      <h2 class="trip-title modal-title">Trip to: ${city}, ${country}</h2>
-      <p class="modal-departure"><span class="title">Departure: </span> ${departureDate}</p>
-      <p class="modal-arrival"><span class="title">Arrival: </span> ${arrivalDate}</p>
+      <h2 class="trip-title modal-title">Trip to: ${locationValue}, ${countryName}</h2>
+      <p class="modal-departure"><span class="title">Departure: </span> ${departureValue}</p>
+      <p class="modal-arrival"><span class="title">Arrival: </span> ${arrivalValue}</p>
 
       <p class="modal-trip-duration"><span class="title">Duration: </span>${duration} days</p>
-      <p class="modal-days">Your trip to ${city} is ${daysAway} day(s) away</p>
+      <p class="modal-days">Your trip to ${locationValue} is ${daysAway} day(s) away</p>
       <h3>Typical Weather for then is:</h3>
       <div class="modal-weather-container">
         <div class="temp">Temperature: ${Math.round(temp)}C</div>
-        <div class="feels-like">Feels Like: ${Math.round(feelsLike)}C</div>
-        <div class="wind-speed">Wind Speed: ${Math.round(windSpeed)}</div>
+        <div class="feels-like">Feels Like: ${Math.round(app_temp)}C</div>
+        <div class="wind-speed">Wind Speed: ${Math.round(wind_spd)}</div>
       </div>
       <div class="clouds">${clouds} throughout the day</div>
     </div>

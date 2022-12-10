@@ -7,13 +7,14 @@ import {
   getCountryFlag,
 } from './APIData';
 
+const appData = {}; // store trip data
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   const locationValue = document.getElementById('location').value;
   const departureValue = document.getElementById('departure').value;
   const arrivalValue = document.getElementById('arrival').value;
-
   const { lat, lng, countryName } = await getCoordinates(locationValue);
   const { countryFlag } = await getCountryFlag(countryName);
   const { temp, clouds, wind_spd, app_temp } = await getWeather(
@@ -22,23 +23,25 @@ const handleSubmit = async (e) => {
     getDays(departureValue)
   );
   const imageUrl = await getImage(locationValue);
-
   const duration = getDays(arrivalValue) - getDays(departureValue);
+  const daysAway = getDays(departureValue);
 
-  updateModal(
-    countryName,
-    countryFlag,
+  Object.assign(appData, {
     locationValue,
-    imageUrl,
     departureValue,
     arrivalValue,
-    getDays(departureValue),
+    countryName,
+    countryFlag,
+    imageUrl,
+    daysAway,
     duration,
     temp,
     clouds,
     wind_spd,
-    app_temp
-  );
+    app_temp,
+  });
+
+  updateModal(appData);
 };
 
 document.getElementById('form').addEventListener('submit', handleSubmit);

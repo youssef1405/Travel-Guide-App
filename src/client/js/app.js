@@ -15,16 +15,17 @@ const handleSubmit = async (e) => {
   const locationValue = document.getElementById('location').value;
   const departureValue = document.getElementById('departure').value;
   const arrivalValue = document.getElementById('arrival').value;
-  const { lat, lng, countryName } = await getCoordinates(locationValue);
-  const { countryFlag } = await getCountryFlag(countryName);
-  const { temp, clouds, wind_spd, app_temp } = await getWeather(
+  const { lat, lng, countryName } = await getCoordinates({ locationValue });
+  const { countryFlag } = await getCountryFlag({ countryName });
+
+  const daysAway = getDays(departureValue);
+  const { temp, clouds, wind_spd } = await getWeather({
     lng,
     lat,
-    getDays(departureValue)
-  );
-  const imageUrl = await getImage(locationValue);
+    daysAway,
+  });
+  const imageUrl = await getImage({ locationValue });
   const duration = getDays(arrivalValue) - getDays(departureValue);
-  const daysAway = getDays(departureValue);
 
   Object.assign(appData, {
     locationValue,
@@ -38,7 +39,6 @@ const handleSubmit = async (e) => {
     temp,
     clouds,
     wind_spd,
-    app_temp,
   });
 
   updateModal(appData);

@@ -31,7 +31,6 @@ const updateModal = (appData) => {
     temp,
     clouds,
     wind_spd,
-    app_temp,
   } = appData;
 
   overlay.classList.remove('hidden');
@@ -55,7 +54,6 @@ const updateModal = (appData) => {
       <h3>Typical Weather for then is:</h3>
       <div class="modal-weather-container">
         <div class="temp">Temperature: ${Math.round(temp)}C</div>
-        <div class="feels-like">Feels Like: ${Math.round(app_temp)}C</div>
         <div class="wind-speed">Wind Speed: ${Math.round(wind_spd)}</div>
       </div>
       <div class="clouds">${clouds} throughout the day</div>

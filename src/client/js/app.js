@@ -36,7 +36,6 @@ const handleSubmit = async (e) => {
 
   // data retrieved from the pixabay api
   const imageUrl = await getImage({ locationValue });
-  console.log(imageUrl);
 
   // number of of days btw the departure date and arrival date
   const duration = getDays(arrivalValue) - getDays(departureValue);

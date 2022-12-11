@@ -67,7 +67,7 @@ app.post('/image', async (req, res) => {
   const pixaData = await getImage(req.body.locationValue);
   res.send({
     imageUrl:
-      pixaData.hits[Math.floor(Math.random() * pixaData.hits.length) + 1][
+      pixaData.hits[Math.floor(Math.random() * pixaData.hits.length) - 1][
         'previewURL'
       ],
   });

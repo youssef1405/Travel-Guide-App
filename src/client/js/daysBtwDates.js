@@ -1,19 +1,14 @@
 /**
  *
- * @param {*} departureDate Departure Date of the trip
- * @returns Number of of days between today and the departure date
+ * @param {*} date calue
+ * @returns Number of of days between two the date argumnet and today's date
  */
-const getDays = (departureDate) => {
+const getDays = (date) => {
   const MILSECONDS_TO_DAYS = 86400000; // to convert millseconds to days
-
   const todayDate = new Date();
-  departureDate = new Date(departureDate);
+  date = new Date(date);
   return (
-    (new Date(
-      departureDate.getFullYear(),
-      departureDate.getMonth(),
-      departureDate.getDate() + 1
-    ) -
+    (new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1) -
       new Date(
         todayDate.getFullYear(),
         todayDate.getMonth(),

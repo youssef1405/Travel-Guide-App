@@ -98,9 +98,15 @@ $border-style: 1px solid #ddd;
 
     .modal-save-btn {
       background-color: #2950b8;
+      &:hover {
+        background-color: #83a3fc;
+      }
     }
     .modal-cancel-btn {
       background-color: #e94444;
+      &:hover {
+        background-color: #ff9494;
+      }
     }
   }
   @media (min-width: 700px) {

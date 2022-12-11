@@ -1,62 +1,54 @@
 // Global variables
 
+// holds and displays the trip data
 const modal = document.querySelector('.modal');
+// makes the backougroud a bit darker when the modal pops up
 const overlay = document.querySelector('.overlay');
+// parent element of all the trips
 const main = document.getElementById('main');
 
 /**
  * This function populates the modal with data extracted from the APIs
- * @param {*} country
- * @param {*} city
- * @param {*} imageUrl
- * @param {*} departureDate
- * @param {*} arrivalDate
- * @param {*} daysAway
- * @param {*} duration
- * @param {*} temp
- * @param {*} clouds
- * @param {*} windSpeed
- * @param {*} feelsLike
  */
 const updateModal = (appData) => {
-  const {
-    locationValue,
-    departureValue,
-    arrivalValue,
-    countryName,
-    countryFlag,
-    imageUrl,
-    daysAway,
-    duration,
-    temp,
-    clouds,
-    wind_spd,
-  } = appData;
-
   overlay.classList.remove('hidden');
   let modalSection = document.createElement('section');
   modalSection.classList.add('modal', 'modal-main');
 
   modalSection.innerHTML = `
   <header class="modal-header">
-    <img class="country-flag" alt="Destination Flag" src=${countryFlag} />
-    <span class="country-name">${countryName}</span>
+    <img class="country-flag" alt="Destination Flag" src=${
+      appData.countryFlag
+    } />
+    <span class="country-name">${appData.countryName}</span>
   </header>
   <div class="modal-body">
-    <img class="modal-img" src="${imageUrl.imageUrl}" alt="" />
+    <img class="modal-img" src="${appData.imageUrl.imageUrl}" alt="" />
     <div class="modal-trip-info">
-      <h2 class="trip-title modal-title">Trip to: ${locationValue}, ${countryName}</h2>
-      <p class="modal-departure"><span class="title">Departure: </span> ${departureValue}</p>
-      <p class="modal-arrival"><span class="title">Arrival: </span> ${arrivalValue}</p>
+      <h2 class="trip-title modal-title">Trip to: ${appData.locationValue}, ${
+    appData.countryName
+  }</h2>
+      <p class="modal-departure"><span class="title">Departure: </span> ${
+        appData.departureValue
+      }</p>
+      <p class="modal-arrival"><span class="title">Arrival: </span> ${
+        appData.arrivalValue
+      }</p>
 
-      <p class="modal-trip-duration"><span class="title">Duration: </span>${duration} days</p>
-      <p class="modal-days">Your trip to ${locationValue} is ${daysAway} day(s) away</p>
+      <p class="modal-trip-duration"><span class="title">Duration: </span>${
+        appData.duration
+      } days</p>
+      <p class="modal-days">Your trip to ${appData.locationValue} is ${
+    appData.daysAway
+  } day(s) away</p>
       <h3>Typical Weather for then is:</h3>
       <div class="modal-weather-container">
-        <div class="temp">Temperature: ${Math.round(temp)}C</div>
-        <div class="wind-speed">Wind Speed: ${Math.round(wind_spd)}</div>
+        <div class="temp">Temperature: ${Math.round(appData.temp)}C</div>
+        <div class="wind-speed">Wind Speed: ${Math.round(
+          appData.wind_spd
+        )}</div>
       </div>
-      <div class="clouds">${clouds} throughout the day</div>
+      <div class="clouds">${appData.clouds} throughout the day</div>
     </div>
   </div>
   <div class="modal-buttons-container">

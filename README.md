@@ -12,6 +12,10 @@ get an image of the location you are planning to visit. finally, the RESTcountri
 country you are visiting.
 
 ## Screenshots
+![image](https://user-images.githubusercontent.com/18706769/206882532-e4aad03f-33de-41e0-996a-a17d4c5ab515.png)
+![image](https://user-images.githubusercontent.com/18706769/206882564-5c90ebbc-971a-4a89-bc4f-08bbe3c034b2.png)
+![image](https://user-images.githubusercontent.com/18706769/206882525-95b5ad7b-e0db-43d4-82e7-9a6793a26443.png)
+
 
 ## Installation
 
